@@ -1,0 +1,46 @@
+<div fxFlex="column" class="container" fxFlexFill>
+  <div fxLayout="row" fxLayoutGap="20px" fxFlex>
+    <div fxLayout="column" fxFlex fxLayoutGap="15px">
+      <mat-card fxFlex="initial" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px" class="search-bar">
+        <div fxFlex="initial">
+          <mat-label>Pesquise por requisito:</mat-label>
+          <mat-form-field appearance="outline" class="teste">
+            <mat-label>Habilidades</mat-label>
+            <input matInput placeholder="Ex: Angular, Java" [(ngModel)]="filtro.habilidades"
+              (ngModelChange)="filtrarCandidatos()" />
+          </mat-form-field>
+        </div>
+        <div fxFlex>
+          <mat-label>Mínimo de experiência:</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label>Em mês:</mat-label>
+            <input matInput type="number" min="0" [(ngModel)]="filtro.minExperiencia"
+              (ngModelChange)="filtrarCandidatos()" />
+          </mat-form-field>
+        </div>
+        <div fxFlex>
+          <mat-label>Máximo de experiência:</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label>Em mês:</mat-label>
+            <input matInput type="number" min="0" [(ngModel)]="filtro.maxExperiencia"
+              (ngModelChange)="filtrarCandidatos()" />
+          </mat-form-field>
+        </div>
+        <button fxFlex="nogrow" mat-button (click)="limparFiltro()">Limpar</button>
+      </mat-card>
+      <div *ngIf="candidatosFiltrados.length > 0" fxLayout="column" fxFlex="50" fxLayoutGap="20px" class="candidato-list">
+        <mat-card *ngFor="let item of candidatosFiltrados" (click)="selecioneCandidato(item)" class="candidato-card">
+          <mat-card-title class="title">{{ item.nome }}</mat-card-title>
+          <mat-card-content>{{ 'Meses de experiência: ' + item.tempoExperiencia }}</mat-card-content>
+          <mat-card-content>{{ 'Domínio de tecnologias: ' + item.habilidades }}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <app-detail-candidatos [candidatoSelecionado]="candidatoSelecionado"></app-detail-candidatos>
+  </div>
+
+  <div *ngIf="candidatos.length === 0 " fxLayout="column" fxLayoutAlign="center center" fxFlex="auto">
+    <h3>Não há candidatos</h3>
+  </div>
+
+</div>

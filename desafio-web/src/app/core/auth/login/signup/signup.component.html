@@ -1,0 +1,70 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center"
+  class="login-box" fxLayoutGap="10px">
+  <h2 class="login-title" fxLayoutAlign="center">Sign Up</h2>
+
+  <!-- Campo Nome -->
+  <mat-form-field fxFlex appearance="outline">
+    <mat-label>Nome</mat-label>
+    <input matInput type="text" formControlName="nome" />
+    <mat-error *ngIf="signupForm.get('nome')?.hasError('required')">Nome é obrigatório</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Email -->
+  <mat-form-field fxFlex appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-error *ngIf="signupForm.get('email')?.hasError('required')">Email é obrigatório</mat-error>
+    <mat-error *ngIf="signupForm.get('email')?.hasError('email')">Email inválido</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Apresentação -->
+  <mat-form-field *ngIf="signupForm.get('userType')?.value === 'candidato'" fxFlex appearance="outline">
+    <mat-label>Apresentação resumida</mat-label>
+    <input matInput type="text" formControlName="apresentacao"/>
+    <mat-error *ngIf="signupForm.get('apresentacao')?.hasError('required')">Apresentação é obrigatória</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Habilidades -->
+  <mat-form-field *ngIf="signupForm.get('userType')?.value === 'candidato'" fxFlex appearance="outline">
+    <mat-label>Stack de tecnologias dominantes</mat-label>
+    <input matInput type="text" formControlName="habilidades" placeholder="Ex:. java, Angular ..."/>
+    <mat-error *ngIf="signupForm.get('habilidades')?.hasError('required')">Habilidades são obrigatórias</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Meses de Experiência -->
+  <mat-form-field *ngIf="signupForm.get('userType')?.value === 'candidato'" fxFlex appearance="outline">
+    <mat-label>Meses de experiência</mat-label>
+    <input matInput type="number" formControlName="mesesExperiencia" min="0" />
+    <mat-error *ngIf="signupForm.get('mesesExperiencia')?.hasError('required')">Campo obrigatório</mat-error>
+    <mat-error *ngIf="signupForm.get('mesesExperiencia')?.hasError('min')">Deve ser maior que 0</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Senha -->
+  <mat-form-field appearance="outline" fxFlex>
+    <mat-label>Senha</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-error *ngIf="signupForm.get('password')?.hasError('required')">Senha é obrigatória</mat-error>
+    <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">Senha deve ter pelo menos 8 caracteres</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Confirmar Senha -->
+  <mat-form-field appearance="outline" fxFlex>
+    <mat-label>Confirme sua senha</mat-label>
+    <input matInput type="password" formControlName="confirmPassword" />
+    <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Confirmação de senha é obrigatória</mat-error>
+    <mat-error *ngIf="signupForm.hasError('passwordMismatch')">As senhas não coincidem</mat-error>
+  </mat-form-field>
+
+  <!-- Campo Tipo de Usuário -->
+  <mat-form-field appearance="outline" fxFlex >
+    <mat-label>Tipo de usuário</mat-label>
+    <mat-select formControlName="userType">
+      <mat-option value="empresa">Empresa</mat-option>
+      <mat-option value="candidato">Candidato</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Botão de Envio -->
+  <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid" fxFlexfill>Crie uma conta</button>
+  <button mat-button class="signup-link" (click)="onClickToLogin()" fxFlexfill>Já possui uma conta? Log in</button>
+</form>

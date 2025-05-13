@@ -1,0 +1,28 @@
+<div *ngIf="candidatoSelecionado" class="detail-candidato" fxLayout="column" fxLayoutGap="20px" fxFlexFill>
+  
+  <!-- Candidate Info Card -->
+  <mat-card fxFlex>
+    <mat-card-title class="title">{{ candidatoSelecionado.nome }}</mat-card-title>
+    <mat-card-content>
+      <p class="content-detail">
+        Apresentação:<br/>
+         {{ candidatoSelecionado.apresentacao }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Message Input Card -->
+
+  <mat-card fxFlex="35" class="feedback-card">
+    <mat-card-title class="title">Feedback</mat-card-title>
+    <mat-card-content fxLayout="column" >
+      
+      <mat-form-field appearance="outline" fxFlex>        
+        <mat-label>Escreva uma mensagem</mat-label>
+        <textarea matInput [(ngModel)]="mensagemTexto" rows="5" placeholder="Digite sua mensagem..."></textarea>
+      </mat-form-field>
+      <button fxFlex="end" mat-raised-button color="primary" (click)="enviarMensagem()" [disabled]="!mensagemTexto">Enviar</button>
+      
+    </mat-card-content>
+  </mat-card>
+
+</div>

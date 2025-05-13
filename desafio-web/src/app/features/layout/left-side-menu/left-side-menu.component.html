@@ -1,0 +1,14 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="container" fxFlexFill>
+    <div fxFlex="10"> 
+        <img src="favicon.ico" class="logo">
+    </div>
+    <div fxFlex="80" fxLayout="column" fxLayoutGap="90px" fxLayoutAlign="center" >        
+        <button mat-flat-button class="page-button" (click)="redirectTo('vagas')"> vagas</button>
+        <button mat-flat-button class="page-button" *ngIf="!isEmpresa" (click)="redirectTo('candidaturas')"> candidaturas</button>
+        <button mat-flat-button class="page-button" *ngIf="isEmpresa" (click)="redirectTo('candidatos')"> candidatos</button>
+    </div>    
+    <div fxFlex="10">         
+        <button mat-stroked-button color="primary" (click)="logout()" class="logout-button">Logout</button>
+    </div>
+    
+</div>

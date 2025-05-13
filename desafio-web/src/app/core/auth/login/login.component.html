@@ -1,0 +1,45 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="container">
+
+  <div fxLayout="column" fxFlex="grow" class="image-section">
+    <img src="fundo-login.png" alt="login image" class="login-image" />
+  </div>
+
+  <div fxLayout="column" fxFlex="50" fxLayoutAlign="center center">
+
+    <ng-container *ngIf=isLogin>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxFlex fxLayoutAlign="center"
+        class="login-box" fxLayoutGap="15px">
+
+        <h2 class="login-title" fxLayoutAlign="center">Log in</h2>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" required />
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email é obrigatório</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Email inválido</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('invalidPasswordOrEmail')"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" type="password" required />
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Senha é obrigatória</mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Mínimo de 8 caracteres</mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('invalidPasswordOrEmail')">Senha ou usuário
+            incorreto</mat-error>
+        </mat-form-field>
+
+        <button fxFlexfill mat-raised-button color="primary" appLoginButton>Log in</button>
+
+        <button fxFlexfill mat-button class="signup-link" (click)="onLoginSignupClick()">Sign up</button>  
+
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf=!isLogin>
+      <app-signup (switchToLogin)="onLoginSignupClick()" (submitSignup)="onSubmitSignup($event)"></app-signup>
+    </ng-container>
+
+  </div>
+
+</div>

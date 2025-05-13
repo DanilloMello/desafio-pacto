@@ -1,0 +1,41 @@
+@use 'variables' as *
+
+:host
+  display: block;
+  height: 100%;
+
+.container
+    position: relative
+    padding: 16px
+    height: 100%
+
+.vaga-card
+    margin: 16
+    min-width: 400px
+    cursor: pointer
+
+.vaga-list
+    overflow-y: auto;
+    max-height: calc(100vh - 80px); 
+
+.mat-mdc-card-title
+    padding: 20px 20px 10px 20px   
+    height: 30px
+    line-height: 30px
+  
+.mat-mdc-card-content
+    padding: 10px 20px 10px 20px
+    height: 50px
+    line-height: 50px
+
+.floating-btn 
+    position: absolute
+    bottom: 16px
+    left: 16px
+    z-index: 1000
+
+.delete-button
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%

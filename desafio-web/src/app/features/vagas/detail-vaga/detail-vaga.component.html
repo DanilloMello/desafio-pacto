@@ -1,0 +1,14 @@
+<div *ngIf="vagaSelecionada" class="detail-vaga" fxFlexFill>
+  <mat-card fxLayout="column" fxFlexFill>
+
+      <mat-card-title class="title">{{ vagaSelecionada.titulo }}</mat-card-title>
+
+      <mat-card-content fxFlex>{{ vagaSelecionada.descricao }}</mat-card-content>
+
+      <div fxFlex="none" fxLayoutAlign="center center" class="button-container">
+        <button mat-stroked-button color="primary" (click)="candidate()" class="candidatura-button">
+          Candidate-se
+        </button>
+      </div>
+  </mat-card>
+</div>

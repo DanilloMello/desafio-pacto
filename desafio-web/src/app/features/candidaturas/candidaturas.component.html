@@ -1,0 +1,17 @@
+<div fxFlex="column" class="container" fxFlexFill>
+  <div *ngIf="candidaturas.length > 0" fxLayout="row" fxLayoutGap="20px" fxFlexFill>
+
+    <div fxLayout="column" fxFlex="30" fxLayoutGap="20px" class="candidatura-list" >
+      <mat-card *ngFor="let item of candidaturas" (click)="selecioneCandidatura(item)" class="candidatura-card" >
+        <mat-card-title class="title">{{ item.titulo }}</mat-card-title>
+        <mat-card-content>{{ item.descricao }}</mat-card-content>
+      </mat-card>
+    </div>
+      <app-detail-candidaturas [candidaturaSelecionada]="candidaturaSelecionada"></app-detail-candidaturas>   
+  </div>
+
+  <div *ngIf="candidaturas.length === 0" fxLayout="column" fxLayoutAlign="center center" fxFlex="auto">
+    <h3>Não há candidaturas</h3>
+  </div>
+  
+</div>

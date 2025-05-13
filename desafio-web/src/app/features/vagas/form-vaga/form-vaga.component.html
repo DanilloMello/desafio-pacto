@@ -1,0 +1,33 @@
+<form [formGroup]="vagaForm" (ngSubmit)="onSubmit()" class="vaga-form" fxLayout="column" fxLayoutGap="16px" fxFlexFill>
+  <mat-card>
+    <mat-card-title class="title">Cadastro de Vaga</mat-card-title>
+    <mat-card-content fxLayout="column" fxLayoutGap="16px">
+
+      <mat-form-field appearance="outline" class="input-area">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-area">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput formControlName="descricao" rows="4" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="input-area">
+        <mat-label>Requisitos</mat-label>
+        <textarea matInput formControlName="requisitos" rows="4" required></textarea>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="primary" class="salva-vaga-button" type="submit" [disabled]="vagaForm.invalid">
+        {{ vaga?.id ? 'Atualizar' : 'Salvar' }}
+      </button>
+    </mat-card-actions>
+
+    <mat-error  *ngIf="errorMessage" fxLayoutAlign="center center" class="message-erro">
+      {{errorMessage}}
+    </mat-error>
+
+  </mat-card>
+</form>

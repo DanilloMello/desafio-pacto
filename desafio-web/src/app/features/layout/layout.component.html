@@ -1,0 +1,23 @@
+<div fxLayout="row" class="full-height">
+
+    <div fxFlex="20" class="left-bar">
+        <app-left-side-menu></app-left-side-menu>
+    </div>
+
+    <div fxFlex fxLayout="column">
+
+        <div fxFlex="10" class="right-top-bar">
+            <app-header-menu></app-header-menu>
+        </div>
+
+        <div fxFlex class="main-content">
+            <ng-container *ngIf="isLoading$ | async; else content">
+                <app-loading></app-loading>
+            </ng-container>
+
+            <ng-template #content>
+                <router-outlet></router-outlet>
+            </ng-template>
+        </div>
+    </div>
+</div>

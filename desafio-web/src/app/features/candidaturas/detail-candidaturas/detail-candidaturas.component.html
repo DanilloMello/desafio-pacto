@@ -1,0 +1,29 @@
+<div *ngIf="candidaturaSelecionada" class="detail-candidatura" fxFlexFill>
+  <mat-card class="detail-card" fxFlexFill >
+    <mat-card-title class="title">{{ candidaturaSelecionada.titulo }}</mat-card-title>
+    <mat-card-content class="content">{{ candidaturaSelecionada.descricao }}</mat-card-content>
+
+    <div fxLayout="row" fxFlex="auto" class="card-body" fxLayoutGap="20">
+      <!-- Stepper column -->
+      <div fxLayout="column" fxFlex="40" class="stepper-container">
+        <mat-card-title class="title">Status da Candidatura</mat-card-title>
+        <mat-vertical-stepper class="full-height-stepper" [selectedIndex]="statusIndex" linear>
+          <mat-step *ngFor="let etapa of statusEtapas; let i = index" [completed]="i < statusIndex" [editable]="false">
+            <ng-template matStepLabel>
+              {{ etapa.label }}
+            </ng-template>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+
+      <!-- Feedback or other content -->
+      
+      <div fxLayout="column" fxLayoutAlign="start center">
+        <mat-card-title class="title">Feedbacks</mat-card-title>
+        <mat-card *ngFor="let item of candidaturaSelecionada.feedback" class="feedback-card">
+          <mat-card-content >{{ item }}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card>
+</div>

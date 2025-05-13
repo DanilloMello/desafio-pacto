@@ -1,0 +1,33 @@
+<div fxFlex="column" class="container" fxFlexFill>
+  <div *ngIf="vagas.length > 0" fxLayout="row" fxLayoutGap="20px" fxFlexFill>
+
+    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px" class="vaga-list" >
+      <mat-card *ngFor="let item of vagas" (click)="selecioneVaga(item)" class="vaga-card" >
+        <mat-card-title>
+          <div fxFlex>
+          <span fxFlex>{{ item.titulo }}</span>
+          <button mat-icon-button color="warn" *ngIf="isEmpresa" (click)="deletaVaga(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          </div>
+        </mat-card-title>
+        <mat-card-content>{{ item.descricao }}</mat-card-content>
+      </mat-card>
+    </div>
+      <app-detail-vaga *ngIf="vagaSelecionada && !isEmpresa" [vagaSelecionada]="vagaSelecionada"></app-detail-vaga>
+      <app-form-vaga *ngIf="isEmpresa" 
+        (vagaFormEmitter)="handleVagaFormValue($event)"
+        [vaga]="vagaSelecionada"
+        [errorMessage]="errorMessage">
+      </app-form-vaga>
+  </div>
+
+  <div *ngIf="vagas.length === 0" fxLayout="column" fxLayoutAlign="center center" fxFlex="auto">
+    <h3>Não há vagas</h3>
+  </div>
+  
+  <button mat-fab *ngIf="isEmpresa" color="primary" (click)="criaVaga()" class="floating-btn">
+    <mat-icon>add</mat-icon>
+  </button>
+  
+</div>
